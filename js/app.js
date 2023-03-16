@@ -1,48 +1,33 @@
+class Greeting {
+  constructor(parentID, inputID, buttonID) {
+    this.parentID = parentID;
+    this.inputID = inputID;
+    this.buttonID = buttonID;
+  }
 
-// class Button{
-//     constructor(parentID,text){
-//         this.parentID = parentID;
-//         // completar this.text
+  render() {
+    const parent = document.getElementById(this.parentID);
 
-//     }
+    const input = document.createElement("input");
+    input.type = "text";
+    input.placeholder = "Escribe tu nombre";
+    input.id = this.inputID;
 
-//     render(){
-//         let myApp = document.getElementById(this.parentID);
+    const button = document.createElement("button");
+    button.textContent = "Mostrar saludo";
+    button.id = this.buttonID;
 
-//         myApp.innerHTML = ""; // vamos a escribir en el html para que se dibuje
-//         // un boton con el texto de this.text
-//     }
-// }
+    const greeting = document.createElement("div");
+    greeting.id = "greeting";
 
-//  contruir el objeto boton
-//  y llamar al metodo render de ese objeto
-// let myButon = new...
-// myButon.metodoQueSea()
+    parent.append(input, button, greeting);
 
+    button.addEventListener("click", () => {
+      const name = input.value;
+      greeting.textContent = `¡Hola ${name}!`;
+    });
+  }
+}
 
-// // ESTA PARTE LA AGREGUE YO:::
-// class Button {
-//   constructor(parentID, text, onClick) {
-//     this.parentID = parentID;
-//     this.text = text;
-//     this.onClick = onClick;
-//   }
-
-//   render() {
-//     const parent = document.getElementById(this.parentID);
-
-//     const button = document.createElement("button");
-//     button.innerHTML = this.text;
-
-//     if (this.onClick) {
-//       button.addEventListener("click", this.onClick);
-//     }
-//     parent.appendChild(button);
-//   }
-// }
-
-// const myButton = new Button("myApp", "Click me!!!", () => alert("Holaaa!!!"));
-// myButton.render();
-
-
-
+const greeting = new Greeting("app", "name-input", "show-greeting");
+greeting.render();
